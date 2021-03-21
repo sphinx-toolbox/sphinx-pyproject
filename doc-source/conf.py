@@ -65,6 +65,7 @@ pygments_style = "default"
 intersphinx_mapping = {
 		"python": ("https://docs.python.org/3/", None),
 		"sphinx": ("https://www.sphinx-doc.org/en/stable/", None),
+		"sphinx-toolbox": ("https://sphinx-toolbox.readthedocs.io/en/latest", None),
 		}
 
 html_theme = "domdf_sphinx_theme"

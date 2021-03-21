@@ -1,0 +1,5 @@
+dom-toml>=0.1.1
+domdf-python-tools>=2.7.0
+packaging>=20.9
+shippinglabel>=0.10.0
+toml>=0.10.2

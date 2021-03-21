@@ -35,10 +35,15 @@ known_third_party = [
     "coincidence",
     "coverage",
     "coverage_pyver_pragma",
+    "dom_toml",
     "domdf_python_tools",
+    "email_validator",
+    "packaging",
     "pytest",
     "pytest_cov",
     "pytest_randomly",
     "pytest_timeout",
+    "shippinglabel",
+    "toml",
 ]
 known_first_party = "sphinx_pyproject"

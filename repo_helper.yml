@@ -45,3 +45,6 @@ classifiers:
  - 'Topic :: Documentation :: Sphinx'
  - 'Topic :: Software Development :: Documentation'
  - "Topic :: Utilities"
+
+intersphinx_mapping:
+ - "'sphinx-toolbox': ('https://sphinx-toolbox.readthedocs.io/en/latest', None)"
