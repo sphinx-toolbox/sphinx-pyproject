@@ -115,8 +115,218 @@ but leaves it to Sphinx to check the value is correct.
 #  OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
+# stdlib
+import functools
+from typing import Any, Iterator, Mapping, Set
+
+# 3rd party
+import dom_toml
+from domdf_python_tools.paths import PathPlus
+from domdf_python_tools.typing import PathLike
+
+# this package
+from sphinx_pyproject.parser import ProjectParser, SphinxPyprojectParser
+
+__all__ = [
+		"PyProjectConfig",
+		"get_add_function_parentheses",
+		"get_add_module_names",
+		"get_description",
+		"get_exclude_patterns",
+		"get_extensions",
+		"get_html_context",
+		"get_html_logo",
+		"get_html_show_sourcelink",
+		"get_html_static_path",
+		"get_html_theme",
+		"get_html_theme_options",
+		"get_language",
+		"get_manpages_url",
+		"get_master_doc",
+		"get_name",
+		"get_nitpicky",
+		"get_pygments_style",
+		"get_show_authors",
+		"get_source_encoding",
+		"get_source_parsers",
+		"get_source_suffix",
+		"get_strip_signature_backslash",
+		"get_templates_path",
+		"get_trim_doctest_flags",
+		"get_trim_footnote_reference_space",
+		"get_version"
+		]
+
 __author__: str = "Dominic Davis-Foster"
 __copyright__: str = "2021 Dominic Davis-Foster"
 __license__: str = "MIT License"
 __version__: str = "0.0.0"
 __email__: str = "dominic@davis-foster.co.uk"
+
+
+class PyProjectConfig(Mapping[str, Any]):
+
+	def __init__(self, pyproject_file: PathLike):
+		self.pyproject_file = PathPlus(pyproject_file)
+
+		config = dom_toml.load(self.pyproject_file)
+
+		self._621parser = ProjectParser()
+		self._parser = SphinxPyprojectParser()
+
+		if "project" in config:
+			self._621config = self._621parser.parse(config["project"])
+		else:
+			self._621config = {}
+
+		if "sphinx-pyproject" in config.get("tool", {}):
+			self._config = self._parser.parse(config["tool"])
+		else:
+			self._config = {}
+
+	@property
+	def valid_keys(self) -> Set[str]:
+		return {*self._621parser.keys, *self._parser.keys}
+
+	def __len__(self) -> int:
+		return len(self._621config) + len(self._config)
+
+	def __iter__(self) -> Iterator[str]:
+		yield from self._621config
+		yield from self._config
+
+	def __getitem__(self, item):
+		if item not in self.valid_keys:
+			raise KeyError(f"Unsupported configuration value {item!r}")
+
+		elif item in self._621config:
+			return self._621config[item]
+		elif item in self._config:
+			return self._config[item]
+		else:
+			raise KeyError(f"Undefined configuration value {item!r}")
+
+	def __getattr__(self, item):
+		if item.startswith("get_") and item[4:] in self.valid_keys:
+			return lambda: self[item[4:]]
+		else:
+			return super().__getattribute__(item)
+
+
+_621parser = ProjectParser()
+_parser = SphinxPyprojectParser()
+
+
+def get_name(pyproject_file: PathLike):
+	return _621parser.parse_name(dom_toml.load(pyproject_file)["project"])
+
+
+def get_version(pyproject_file: PathLike):
+	return _621parser.parse_version(dom_toml.load(pyproject_file)["project"])
+
+
+def get_description(pyproject_file: PathLike):
+	return _621parser.parse_description(dom_toml.load(pyproject_file)["project"])
+
+
+# TODO: author
+
+
+@functools.lru_cache(3)
+def _cached_loads(filename: PathLike):
+	return dom_toml.load(filename).get("tool", {})["sphinx-pyproject"]
+
+
+def get_extensions(pyproject_file: PathLike):
+	return _parser.parse_extensions(_cached_loads(pyproject_file))
+
+
+def get_source_suffix(pyproject_file: PathLike):
+	return _parser.parse_source_suffix(_cached_loads(pyproject_file))
+
+
+def get_source_encoding(pyproject_file: PathLike):
+	return _parser.parse_source_encoding(_cached_loads(pyproject_file))
+
+
+def get_source_parsers(pyproject_file: PathLike):
+	# return _parser.parse_source_parsers(_cached_loads(pyproject_file))
+	return _cached_loads(pyproject_file)["source_parsers"]
+
+
+def get_master_doc(pyproject_file: PathLike):
+	return _parser.parse_master_doc(_cached_loads(pyproject_file))
+
+
+def get_exclude_patterns(pyproject_file: PathLike):
+	return _parser.parse_exclude_patterns(_cached_loads(pyproject_file))
+
+
+def get_templates_path(pyproject_file: PathLike):
+	return _parser.parse_templates_path(_cached_loads(pyproject_file))
+
+
+def get_manpages_url(pyproject_file: PathLike):
+	return _parser.parse_manpages_url(_cached_loads(pyproject_file))
+
+
+def get_nitpicky(pyproject_file: PathLike):
+	return _parser.parse_nitpicky(_cached_loads(pyproject_file))
+
+
+def get_pygments_style(pyproject_file: PathLike):
+	return _parser.parse_pygments_style(_cached_loads(pyproject_file))
+
+
+def get_add_function_parentheses(pyproject_file: PathLike):
+	return _parser.parse_add_function_parentheses(_cached_loads(pyproject_file))
+
+
+def get_add_module_names(pyproject_file: PathLike):
+	return _parser.parse_add_module_names(_cached_loads(pyproject_file))
+
+
+def get_show_authors(pyproject_file: PathLike):
+	return _parser.parse_show_authors(_cached_loads(pyproject_file))
+
+
+def get_trim_footnote_reference_space(pyproject_file: PathLike):
+	return _parser.parse_trim_footnote_reference_space(_cached_loads(pyproject_file))
+
+
+def get_trim_doctest_flags(pyproject_file: PathLike):
+	return _parser.parse_trim_doctest_flags(_cached_loads(pyproject_file))
+
+
+def get_strip_signature_backslash(pyproject_file: PathLike):
+	return _parser.parse_strip_signature_backslash(_cached_loads(pyproject_file))
+
+
+def get_language(pyproject_file: PathLike):
+	return _parser.parse_language(_cached_loads(pyproject_file))
+
+
+def get_html_theme(pyproject_file: PathLike):
+	return _parser.parse_html_theme(_cached_loads(pyproject_file))
+
+
+def get_html_theme_options(pyproject_file: PathLike):
+	# return _parser.parse_html_theme_options(_cached_loads(pyproject_file))
+	return _cached_loads(pyproject_file)["html_theme_options"]
+
+
+def get_html_logo(pyproject_file: PathLike):
+	return _parser.parse_html_logo(_cached_loads(pyproject_file))
+
+
+def get_html_static_path(pyproject_file: PathLike):
+	return _parser.parse_html_static_path(_cached_loads(pyproject_file))
+
+
+def get_html_show_sourcelink(pyproject_file: PathLike):
+	return _parser.parse_html_show_sourcelink(_cached_loads(pyproject_file))
+
+
+def get_html_context(pyproject_file: PathLike):
+	# return _parser.parse_html_context(_cached_loads(pyproject_file))
+	return _cached_loads(pyproject_file)["html_context"]
