@@ -1,0 +1,39 @@
+[build-system]
+requires = [ "whey",]
+build-backend = "whey"
+
+[project]
+name = "sphinx-pyproject"
+version = "0.0.0"
+description = "Move some of your Sphinx configuration into pyproject.toml"
+readme = "README.rst"
+keywords = [ "sphinx", "documentation", "pep621", "toml",]
+dynamic = [ "requires-python", "classifiers", "dependencies",]
+[[project.authors]]
+email = "dominic@davis-foster.co.uk"
+name = "Dominic Davis-Foster"
+
+[project.license]
+file = "LICENSE"
+
+[project.urls]
+Homepage = "https://github.com/sphinx-toolbox/sphinx-pyproject"
+"Issue Tracker" = "https://github.com/sphinx-toolbox/sphinx-pyproject/issues"
+"Source Code" = "https://github.com/sphinx-toolbox/sphinx-pyproject"
+Documentation = "https://sphinx-pyproject.readthedocs.io/en/latest"
+
+[tool.whey]
+base-classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Sphinx",
+    "Intended Audience :: Developers",
+    "Topic :: Documentation",
+    "Topic :: Documentation :: Sphinx",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Utilities",
+]
+python-versions = [ "3.6", "3.7", "3.8", "3.9",]
+python-implementations = [ "CPython", "PyPy",]
+platforms = [ "Windows", "macOS", "Linux",]
+license-key = "MIT"
+package = "sphinx_pyproject"

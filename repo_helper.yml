@@ -1,0 +1,47 @@
+# Configuration for 'repo_helper' (https://github.com/domdfcoding/repo_helper
+---
+modname: 'sphinx-pyproject'
+copyright_years: 2021
+author: 'Dominic Davis-Foster'
+email: 'dominic@davis-foster.co.uk'
+username: 'sphinx-toolbox'
+assignee: 'domdfcoding'
+primary_conda_channel: 'domdfcoding'
+version: '0.0.0'
+license: 'MIT'
+short_desc: 'Move some of your Sphinx configuration into pyproject.toml'
+
+use_whey: true
+mypy_version: "0.812"
+
+conda_channels:
+  - conda-forge
+
+python_versions:
+  - 3.6
+  - 3.7
+  - 3.8
+  - 3.9
+  - 3.10-dev
+  - pypy36
+  - pypy37
+
+sphinx_conf_epilogue:
+  - html_logo = "../sphinx_toolbox.png"
+  - toctree_plus_types.add("fixture")
+  - documentation_summary = "Box of handy tools for Sphinx 🧰 📔"
+
+keywords:
+  - sphinx
+  - documentation
+  - pep621
+  - toml
+
+classifiers:
+ - 'Development Status :: 4 - Beta'
+ - "Framework :: Sphinx"
+ - 'Intended Audience :: Developers'
+ - "Topic :: Documentation"
+ - 'Topic :: Documentation :: Sphinx'
+ - 'Topic :: Software Development :: Documentation'
+ - "Topic :: Utilities"
