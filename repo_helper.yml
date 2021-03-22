@@ -26,11 +26,6 @@ python_versions:
   - pypy36
   - pypy37
 
-sphinx_conf_epilogue:
-  - html_logo = "../sphinx_toolbox.png"
-  - toctree_plus_types.add("fixture")
-  - documentation_summary = "Box of handy tools for Sphinx 🧰 📔"
-
 keywords:
   - sphinx
   - documentation
@@ -48,3 +43,6 @@ classifiers:
 
 intersphinx_mapping:
  - "'sphinx-toolbox': ('https://sphinx-toolbox.readthedocs.io/en/latest', None)"
+
+exclude_files:
+ - conf

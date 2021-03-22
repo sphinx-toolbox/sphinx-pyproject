@@ -1,0 +1,5 @@
+extensions:
+- sphinx-toolbox
+github_repository: repo
+html_show_sourcelink: true
+language: en

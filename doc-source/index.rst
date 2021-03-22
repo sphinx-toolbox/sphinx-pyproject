@@ -148,7 +148,8 @@ Installation
 	:caption: API Reference
 	:glob:
 
-	api/*
+	usage
+	api
 
 .. toctree::
 	:maxdepth: 3

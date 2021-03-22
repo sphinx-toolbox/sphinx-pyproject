@@ -1,0 +1,87 @@
+add_module_names: false
+all_typevars: true
+author: Dominic Davis-Foster
+autodoc_exclude_members:
+- __dict__
+- __class__
+- __dir__
+- __weakref__
+- __module__
+- __annotations__
+- __orig_bases__
+- __parameters__
+- __subclasshook__
+- __init_subclass__
+- __attrs_attrs__
+- __init__
+- __new__
+- __getnewargs__
+- __abstractmethods__
+- __hash__
+copyright: 2021 Dominic Davis-Foster
+description: Move some of your Sphinx configuration into pyproject.toml
+extensions:
+- sphinx_toolbox
+- sphinx_toolbox.more_autodoc
+- sphinx_toolbox.more_autosummary
+- sphinx_toolbox.documentation_summary
+- sphinx_toolbox.tweaks.param_dash
+- sphinx_toolbox.tweaks.latex_toc
+- sphinx.ext.intersphinx
+- sphinx.ext.mathjax
+- sphinxcontrib.httpdomain
+- sphinxcontrib.extras_require
+- sphinx.ext.todo
+- sphinxemoji.sphinxemoji
+- notfound.extension
+- sphinx_copybutton
+- sphinxcontrib.default_values
+- sphinxcontrib.toctree_plus
+- sphinx_debuginfo
+- seed_intersphinx_mapping
+github_repository: sphinx-pyproject
+github_username: sphinx-toolbox
+gitstamp_fmt: '%d %b %Y'
+hide_none_rtype: true
+html_context:
+  conf_py_path: /doc-source/
+  display_github: true
+  github_repo: sphinx-pyproject
+  github_user: sphinx-toolbox
+  github_version: master
+html_show_sourcelink: true
+html_static_path:
+- _static
+html_theme: domdf_sphinx_theme
+html_theme_options:
+  logo_only: false
+html_theme_path:
+- ../..
+language: en
+master_doc: index
+name: sphinx-pyproject
+overloads_location: bottom
+package_root: sphinx_pyproject
+pygments_style: default
+source_suffix: .rst
+sphinxemoji_style: twemoji
+suppress_warnings:
+- image.nonlocal_uri
+templates_path:
+- _templates
+toctree_plus_types:
+- class
+- function
+- method
+- data
+- enum
+- flag
+- confval
+- directive
+- role
+- confval
+- protocol
+- typeddict
+- namedtuple
+- exception
+version: 0.0.0
