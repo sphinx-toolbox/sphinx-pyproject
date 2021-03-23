@@ -1,3 +1,6 @@
+# stdlib
+from typing import Any, Dict
+
 # 3rd party
 import pytest
 from coincidence.regressions import AdvancedDataRegressionFixture
@@ -11,7 +14,7 @@ root_dir = PathPlus(__file__).parent.parent
 
 
 def test_parse_our_config(advanced_data_regression: AdvancedDataRegressionFixture):
-	globalns = {}
+	globalns: Dict[str, Any] = {}
 
 	config = SphinxConfig(root_dir / "pyproject.toml", globalns=globalns)
 
@@ -25,7 +28,7 @@ def test_parse_our_config(advanced_data_regression: AdvancedDataRegressionFixtur
 	assert config["github_repository"] == "sphinx-pyproject"
 	assert config["sphinxemoji_style"] == "twemoji"
 	assert config["templates_path"] == ["_templates"]
-	assert config["add_module_names"] == False
+	assert config["add_module_names"] is False
 	assert config["html_theme_options"] == {"logo_only": False}
 
 	advanced_data_regression.check(globalns)
@@ -96,9 +99,9 @@ def test_parse_config(
 		):
 	(tmp_pathplus / "pyproject.toml").write_text(config)
 
-	config = SphinxConfig(tmp_pathplus / "pyproject.toml")
-	advanced_data_regression.check(config)
-	assert len(config) == size
+	loaded_config = SphinxConfig(tmp_pathplus / "pyproject.toml")
+	advanced_data_regression.check(loaded_config)
+	assert len(loaded_config) == size
 
 
 def test_empty_config(tmp_pathplus: PathPlus):

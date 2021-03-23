@@ -241,7 +241,7 @@ class ProjectParser(AbstractConfigParser):
 		if not all_authors:
 			raise BadConfigError(f"The 'project.authors' key cannot be empty.")
 
-		return word_join(filter(bool, all_authors))
+		return word_join(all_authors)  # type: ignore
 
 	@property
 	def keys(self) -> List[str]:
@@ -256,7 +256,7 @@ class ProjectParser(AbstractConfigParser):
 				"author",
 				]
 
-	def parse(self, config: Dict[str, TOML_TYPES]) -> Dict[str, TOML_TYPES]:
+	def parse(self, config: Dict[str, TOML_TYPES]) -> Dict[str, TOML_TYPES]:  # noqa: D102
 		if "authors" in config:
 			config["author"] = config.pop("authors")
 		elif "maintainers" in config:
