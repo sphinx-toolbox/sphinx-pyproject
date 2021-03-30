@@ -1,2 +1,2 @@
-dom-toml>=0.2.0
+dom-toml>=0.3.0
 domdf-python-tools>=2.7.0

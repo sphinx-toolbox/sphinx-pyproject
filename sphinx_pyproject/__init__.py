@@ -256,7 +256,18 @@ class ProjectParser(AbstractConfigParser):
 				"author",
 				]
 
-	def parse(self, config: Dict[str, TOML_TYPES]) -> Dict[str, TOML_TYPES]:  # noqa: D102
+	def parse(
+			self,
+			config: Dict[str, TOML_TYPES],
+			set_defaults: bool = False,
+			) -> Dict[str, TOML_TYPES]:
+		"""
+		Parse the TOML configuration.
+
+		:param config:
+		:param set_defaults: Has no effect in this class.
+		"""
+
 		if "authors" in config:
 			config["author"] = config.pop("authors")
 		elif "maintainers" in config:
