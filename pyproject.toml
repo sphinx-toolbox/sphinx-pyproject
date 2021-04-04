@@ -117,6 +117,10 @@ toctree_plus_types = [
     "exception",
 ]
 
+[tool.mkrecipe]
+conda-channels = [ "conda-forge", "domdfcoding",]
+extras = "all"
+
 [tool.sphinx-pyproject.html_theme_options]
 logo_only = false
 
