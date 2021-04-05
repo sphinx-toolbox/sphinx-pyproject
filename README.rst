@@ -101,7 +101,7 @@ sphinx-pyproject
 .. |language| image:: https://img.shields.io/github/languages/top/sphinx-toolbox/sphinx-pyproject
 	:alt: GitHub top language
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/sphinx-toolbox/sphinx-pyproject/v0.0.0
+.. |commits-since| image:: https://img.shields.io/github/commits-since/sphinx-toolbox/sphinx-pyproject/v0.1.0
 	:target: https://github.com/sphinx-toolbox/sphinx-pyproject/pulse
 	:alt: GitHub commits since tagged version
 

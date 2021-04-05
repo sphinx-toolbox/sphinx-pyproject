@@ -84,4 +84,4 @@ toctree_plus_types:
 - typeddict
 - namedtuple
 - exception
-version: 0.0.0
+version: 0.1.0
