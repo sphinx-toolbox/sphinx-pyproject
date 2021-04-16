@@ -39,6 +39,7 @@ known_third_party = [
     "dom_toml",
     "domdf_python_tools",
     "email_validator",
+    "importlib_metadata",
     "packaging",
     "pytest",
     "pytest_cov",
