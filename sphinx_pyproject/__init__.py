@@ -135,13 +135,13 @@ class SphinxConfig(Mapping[str, Any]):
 		for key in ("name", "version", "description"):
 			if key not in pep621_config:
 				raise BadConfigError(
-						f"Either {key!r} was not declared in  the 'project' table "
+						f"Either {key!r} was not declared in the 'project' table "
 						f"or it was marked as 'dynamic', which is unsupported by 'sphinx-pyproject'."
 						)
 
 		if "author" not in pep621_config:
 			raise BadConfigError(
-					f"Either 'authors/maintainers' was not declared in  the 'project' table "
+					f"Either 'authors/maintainers' was not declared in the 'project' table "
 					f"or it was marked as 'dynamic', which is unsupported by 'sphinx-pyproject'."
 					)
 

@@ -147,7 +147,7 @@ def test_missing_keys(tmp_pathplus: PathPlus, config: str):
 	(tmp_pathplus / "pyproject.toml").write_text(config)
 
 	err = (
-			"Either '.*' was not declared in  the 'project' table "
+			"Either '.*' was not declared in the 'project' table "
 			"or it was marked as 'dynamic', which is unsupported by 'sphinx-pyproject'."
 			)
 
