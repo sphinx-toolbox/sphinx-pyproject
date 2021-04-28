@@ -6,25 +6,12 @@ on:
   push:
     paths-ignore:
       - 'doc-source/**'
-      - '.bumpversion.cfg'
-      - '.imgbotconfig'
-      - '.pre-commit-config.yaml'
-      - '.pylintrc'
-      - '.readthedocs.yml'
-      - '.style.yapf'
       - 'CONTRIBUTING.rst'
-      - 'stubs.txt'
+
   pull_request:
     paths:
       - 'doc-source/**'
-      - '.bumpversion.cfg'
-      - '.imgbotconfig'
-      - '.pre-commit-config.yaml'
-      - '.pylintrc'
-      - '.readthedocs.yml'
-      - '.style.yapf'
       - 'CONTRIBUTING.rst'
-      - 'stubs.txt'
 
 jobs:
   tests:

@@ -7,12 +7,12 @@ name = "sphinx-pyproject"
 version = "0.1.0"
 description = "Move some of your Sphinx configuration into pyproject.toml"
 readme = "README.rst"
-keywords = [ "sphinx", "documentation", "pep621", "toml",]
+keywords = [ "documentation", "pep621", "sphinx", "toml",]
 dynamic = [ "requires-python", "classifiers", "dependencies",]
 
 [[project.authors]]
-email = "dominic@davis-foster.co.uk"
 name = "Dominic Davis-Foster"
+email = "dominic@davis-foster.co.uk"
 
 
 [project.license]
