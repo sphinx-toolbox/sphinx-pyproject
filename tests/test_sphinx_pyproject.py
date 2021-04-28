@@ -29,7 +29,7 @@ def test_parse_our_config(advanced_data_regression: AdvancedDataRegressionFixtur
 	assert config["sphinxemoji_style"] == "twemoji"
 	assert config["templates_path"] == ["_templates"]
 	assert config["add_module_names"] is False
-	assert config["html_theme_options"] == {"logo_only": False}
+	assert "html_theme_options" not in config
 
 	advanced_data_regression.check(globalns)
 

@@ -43,18 +43,10 @@ github_repository: sphinx-pyproject
 github_username: sphinx-toolbox
 gitstamp_fmt: '%d %b %Y'
 hide_none_rtype: true
-html_context:
-  conf_py_path: /doc-source/
-  display_github: true
-  github_repo: sphinx-pyproject
-  github_user: sphinx-toolbox
-  github_version: master
 html_show_sourcelink: true
 html_static_path:
 - _static
 html_theme: domdf_sphinx_theme
-html_theme_options:
-  logo_only: false
 html_theme_path:
 - ../..
 language: en
@@ -62,6 +54,7 @@ master_doc: index
 name: sphinx-pyproject
 overloads_location: bottom
 package_root: sphinx_pyproject
+project: sphinx-pyproject
 pygments_style: default
 source_suffix: .rst
 sphinxemoji_style: twemoji
@@ -71,17 +64,16 @@ templates_path:
 - _templates
 toctree_plus_types:
 - class
+- confval
+- data
+- directive
+- enum
+- exception
+- flag
 - function
 - method
-- data
-- enum
-- flag
-- confval
-- directive
-- role
-- confval
-- protocol
-- typeddict
 - namedtuple
-- exception
+- protocol
+- role
+- typeddict
 version: 0.1.0

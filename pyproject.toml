@@ -44,6 +44,8 @@ package = "sphinx_pyproject"
 [tool.sphinx-pyproject]
 github_username = "sphinx-toolbox"
 github_repository = "sphinx-pyproject"
+author = "Dominic Davis-Foster"
+project = "sphinx-pyproject"
 copyright = "2021 Dominic Davis-Foster"
 language = "en"
 package_root = "sphinx_pyproject"
@@ -78,6 +80,21 @@ pygments_style = "default"
 html_theme = "domdf_sphinx_theme"
 html_theme_path = [ "../..",]
 html_show_sourcelink = true
+toctree_plus_types = [
+    "class",
+    "confval",
+    "data",
+    "directive",
+    "enum",
+    "exception",
+    "flag",
+    "function",
+    "method",
+    "namedtuple",
+    "protocol",
+    "role",
+    "typeddict",
+]
 add_module_names = false
 hide_none_rtype = true
 all_typevars = true
@@ -100,33 +117,7 @@ autodoc_exclude_members = [
     "__abstractmethods__",
     "__hash__",
 ]
-toctree_plus_types = [
-    "class",
-    "function",
-    "method",
-    "data",
-    "enum",
-    "flag",
-    "confval",
-    "directive",
-    "role",
-    "confval",
-    "protocol",
-    "typeddict",
-    "namedtuple",
-    "exception",
-]
 
 [tool.mkrecipe]
 conda-channels = [ "conda-forge", "domdfcoding",]
 extras = "all"
-
-[tool.sphinx-pyproject.html_theme_options]
-logo_only = false
-
-[tool.sphinx-pyproject.html_context]
-display_github = true
-github_user = "sphinx-toolbox"
-github_repo = "sphinx-pyproject"
-github_version = "master"
-conf_py_path = "/doc-source/"
