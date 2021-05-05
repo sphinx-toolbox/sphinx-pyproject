@@ -135,6 +135,12 @@ Installation
 
 .. end installation
 
+Contents
+-----------
+
+.. html-section::
+
+
 .. toctree::
 	:hidden:
 
@@ -142,18 +148,20 @@ Installation
 
 .. toctree::
 	:maxdepth: 3
-	:caption: Documentation
 	:glob:
 
 	usage
 	api
+	Source
 
 .. toctree::
-	:maxdepth: 3
-	:caption: Contributing
+	:caption: Links
+	:hidden:
 
-	contributing
-	Source
+	GitHub <https://github.com/sphinx-toolbox/default_values>
+	PyPI <https://pypi.org/project/default_values>
+	Contributing Guide <https://contributing-to-sphinx-toolbox.readthedocs.io/en/latest/>
+
 
 .. start links
 

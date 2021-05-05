@@ -59,3 +59,7 @@ autodoc_default_options = {
 		"show-inheritance": None,
 		"exclude-members": ','.join(config["autodoc_exclude_members"]),
 		}
+
+latex_elements = {
+		"fncychap": "\\usepackage[Bjarne]{fncychap}\n\\ChNameAsIs\n\\ChTitleAsIs\n",
+		}

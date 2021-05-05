@@ -43,3 +43,11 @@ classifiers:
 
 intersphinx_mapping:
  - "'sphinx-toolbox': ('https://sphinx-toolbox.readthedocs.io/en/latest', None)"
+
+exclude_files:
+ - contributing
+
+preserve_custom_theme: true
+
+extra_sphinx_extensions:
+ - html_section

@@ -68,6 +68,7 @@ extensions = [
     "sphinxcontrib.toctree_plus",
     "sphinx_debuginfo",
     "seed_intersphinx_mapping",
+    "html_section",
 ]
 sphinxemoji_style = "twemoji"
 gitstamp_fmt = "%d %b %Y"
