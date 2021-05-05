@@ -39,6 +39,7 @@ extensions:
 - sphinxcontrib.toctree_plus
 - sphinx_debuginfo
 - seed_intersphinx_mapping
+- html_section
 github_repository: sphinx-pyproject
 github_username: sphinx-toolbox
 gitstamp_fmt: '%d %b %Y'
