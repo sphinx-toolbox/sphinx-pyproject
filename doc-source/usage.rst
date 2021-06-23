@@ -6,28 +6,33 @@ The :class:`~.SphinxConfig` class will load the configuration from ``pyproject.t
 By passing :func:`globalns=globals() <globals>` to the class constructor, the keys parsed from the
 ``pyproject.toml`` file will be added to the global namespace of the ``conf.py`` file.
 
-For example:
+.. compound::
 
-.. code-block:: python
+	For example:
 
-	# conf.py
+	.. code-block:: python
 
-	from sphinx_pyproject import SphinxConfig
+		# conf.py
 
-	config = SphinxConfig("../pyproject.toml", globalns=globals())
+		from sphinx_pyproject import SphinxConfig
 
-	author  # This name *looks* to be undefined, but it isn't.
+		config = SphinxConfig("../pyproject.toml", globalns=globals())
 
-The :class:`~.SphinxConfig` class also provides a :class:`collections.abc.Mapping` interface.
-If you are going to override or modify one of the configuration values after parsing it,
-the recommended approach is to explicitly assign the name:
+		author  # This name *looks* to be undefined, but it isn't.
 
-.. code-block:: python
 
-	extensions = config["extensions"]
-	extensions.append("sphinx.ext.autodoc")
+.. compound::
 
-This will prevent warnings from linters etc., but is not necessary for Sphinx to see the configuration.
+	The :class:`~.SphinxConfig` class also provides a :class:`collections.abc.Mapping` interface.
+	If you are going to override or modify one of the configuration values after parsing it,
+	the recommended approach is to explicitly assign the name:
+
+	.. code-block:: python
+
+		extensions = config["extensions"]
+		extensions.append("sphinx.ext.autodoc")
+
+	This will prevent warnings from linters etc., but is not necessary for Sphinx to see the configuration.
 
 
 Configuration
@@ -37,18 +42,14 @@ Configuration
 The ``[project]`` table is defined in :pep:`621`.
 ``sphinx-pyproject`` only uses the following keys:
 
-* name_ -- The name of the project.
-* version_ -- The version of the project.
-* description_ -- The summary description of the project.
-* One of `authors/maintainers`_.
+* :pep621:`name` -- The name of the project.
+* :pep621:`version` -- The version of the project.
+* :pep621:`description` -- The summary description of the project.
+* One of :pep621:`authors/maintainers`.
 
 The remaining `Sphinx configuration values`_ can be provided in the ``[tool.sphinx-pyproject]`` table.
 
 See `this project's pyproject.toml file`_ for an example of this configuration.
 
-.. _name: https://www.python.org/dev/peps/pep-0621/#name
-.. _version: https://www.python.org/dev/peps/pep-0621/#version
-.. _description: https://www.python.org/dev/peps/pep-0621/#description
-.. _authors/maintainers: https://www.python.org/dev/peps/pep-0621/#authors-maintainers
 .. _Sphinx configuration values: https://www.sphinx-doc.org/en/master/usage/configuration.html
 .. _this project's pyproject.toml file: https://github.com/sphinx-toolbox/sphinx-pyproject/blob/master/pyproject.toml

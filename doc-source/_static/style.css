@@ -1,0 +1,7 @@
+.compound-first, .compound-middle {
+    margin-bottom: 10px;
+}
+
+.compound-first div.highlight, .compound-middle div.highlight {
+    margin-bottom: 10px !important;
+}

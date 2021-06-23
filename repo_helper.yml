@@ -50,4 +50,10 @@ exclude_files:
 preserve_custom_theme: true
 
 extra_sphinx_extensions:
- - html_section
+ - sphinx_toolbox_experimental.html_section
+ - sphinx_toolbox_experimental.autosummary_widths
+ - sphinx_toolbox_experimental.succinct_seealso
+ - sphinx_toolbox_experimental.needspace
+ - sphinx_toolbox_experimental.missing_xref
+ - sphinx_toolbox_experimental.changelog
+ - sphinx_toolbox_experimental.peps

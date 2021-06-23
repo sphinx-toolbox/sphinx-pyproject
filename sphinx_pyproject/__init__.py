@@ -51,15 +51,18 @@ class SphinxConfig(Mapping[str, Any]):
 	Read the Sphinx configuration from ``pyproject.toml``.
 
 	:param pyproject_file: The path to the ``pyproject.toml`` file.
-	:param globalns: The global namespace of, for example, the ``conf.py`` file.
+	:param globalns: The global namespace of the ``conf.py`` file.
 		The variables parsed from the ``[tool.sphinx-pyproject]`` table will be added to this namespace.
-		If :py:obj:`None` this does not happen.
+		By default, or if explicitly :py:obj:`None`, this does not happen.
+	:no-default globalns:
+
+	.. autosummary-widths:: 1/4
+		:html: 2/10
 	"""
 
 	name: str
 	"""
-	The value of the `project.name <https://www.python.org/dev/peps/pep-0621/#name>`_
-	key in the :pep:`621` metadata.
+	The value of the :pep621:`project.name <name>` key in the :pep:`621` metadata.
 
 	Underscores are replaced by dashes but :pep:`508` normalization is *not* applied.
 
@@ -77,24 +80,22 @@ class SphinxConfig(Mapping[str, Any]):
 
 	version: str
 	"""
-	The value of the `project.version <https://www.python.org/dev/peps/pep-0621/#version>`_
-	key in the :pep:`621` metadata.
+	The value of the :pep621:`project.version <version>` key in the :pep:`621` metadata.
 
 	Converted to a string if the value was a number in the ``pyproject.toml`` file.
 	"""
 
 	description: str
 	"""
-	The value of the `project.description <https://www.python.org/dev/peps/pep-0621/#description>`_
-	key in the :pep:`621` metadata.
+	The value of the :pep621:`project.description <description>` key in the :pep:`621` metadata.
 	"""
 
 	author: str
 	"""
 	A string giving the names of the authors.
 
-	This is parsed from the `project.authors <https://www.python.org/dev/peps/pep-0621/#authors-maintainers>`_
-	key in the :pep:`621` metadata, or the ``project.maintainers`` key as a fallback.
+	This is parsed from the :pep621:`project.authors <authors>` key in the :pep:`621` metadata,
+	or the :pep621:`project.maintainers <maintainers>` key as a fallback.
 
 	The names are joined together, e.g.:
 
@@ -175,6 +176,10 @@ class SphinxConfig(Mapping[str, Any]):
 	def __iter__(self) -> Iterator[str]:
 		"""
 		Returns an iterator over the keys in the ``tool.sphinx-pyproject`` table.
+
+		:rtype:
+
+		.. latex:clearpage::
 		"""
 
 		yield from self._freeform
@@ -183,11 +188,14 @@ class SphinxConfig(Mapping[str, Any]):
 class ProjectParser(AbstractConfigParser):
 	"""
 	Parser for :pep:`621` metadata from ``pyproject.toml``.
+
+	.. autosummary-widths:: 7/16
+		:html: 3/10
 	"""
 
 	def parse_name(self, config: Dict[str, TOML_TYPES]) -> str:
 		"""
-		Parse the `name <https://www.python.org/dev/peps/pep-0621/#name>`_ key.
+		Parse the :pep621:`name` key.
 
 		:param config: The unparsed TOML config for the ``[project]`` table.
 		"""
@@ -198,7 +206,7 @@ class ProjectParser(AbstractConfigParser):
 
 	def parse_version(self, config: Dict[str, TOML_TYPES]) -> str:
 		"""
-		Parse the `version <https://www.python.org/dev/peps/pep-0621/#version>`_ key.
+		Parse the :pep621:`version` key.
 
 		:param config: The unparsed TOML config for the ``[project]`` table.
 		"""
@@ -209,7 +217,7 @@ class ProjectParser(AbstractConfigParser):
 
 	def parse_description(self, config: Dict[str, TOML_TYPES]) -> str:
 		"""
-		Parse the `description <https://www.python.org/dev/peps/pep-0621/#description>`_ key.
+		Parse the :pep621:`description` key.
 
 		:param config: The unparsed TOML config for the ``[project]`` table.
 		"""
@@ -221,7 +229,7 @@ class ProjectParser(AbstractConfigParser):
 	@staticmethod
 	def parse_author(config: Dict[str, TOML_TYPES]) -> str:
 		"""
-		Parse the `authors/maintainers <https://www.python.org/dev/peps/pep-0621/#authors-maintainers>`_ key.
+		Parse the :pep621:`authors/maintainers` key.
 
 		:param config: The unparsed TOML config for the ``[project]`` table.
 		"""
