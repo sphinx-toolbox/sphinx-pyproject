@@ -26,10 +26,10 @@ extensions:
 - sphinx_toolbox.more_autosummary
 - sphinx_toolbox.documentation_summary
 - sphinx_toolbox.tweaks.param_dash
+- sphinx_toolbox.tweaks.latex_layout
 - sphinx_toolbox.tweaks.latex_toc
 - sphinx.ext.intersphinx
 - sphinx.ext.mathjax
-- sphinxcontrib.httpdomain
 - sphinxcontrib.extras_require
 - sphinx.ext.todo
 - sphinxemoji.sphinxemoji
@@ -39,7 +39,13 @@ extensions:
 - sphinxcontrib.toctree_plus
 - sphinx_debuginfo
 - seed_intersphinx_mapping
-- html_section
+- sphinx_toolbox_experimental.html_section
+- sphinx_toolbox_experimental.autosummary_widths
+- sphinx_toolbox_experimental.succinct_seealso
+- sphinx_toolbox_experimental.needspace
+- sphinx_toolbox_experimental.missing_xref
+- sphinx_toolbox_experimental.changelog
+- sphinx_toolbox_experimental.peps
 github_repository: sphinx-pyproject
 github_username: sphinx-toolbox
 gitstamp_fmt: '%d %b %Y'
@@ -72,7 +78,6 @@ toctree_plus_types:
 - exception
 - flag
 - function
-- method
 - namedtuple
 - protocol
 - role
