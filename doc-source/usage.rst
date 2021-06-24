@@ -42,9 +42,9 @@ Configuration
 The ``[project]`` table is defined in :pep:`621`.
 ``sphinx-pyproject`` only uses the following keys:
 
-* :pep621:`name` -- The name of the project.
-* :pep621:`version` -- The version of the project.
-* :pep621:`description` -- The summary description of the project.
+* :pep621:`name` – The name of the project.
+* :pep621:`version` – The version of the project.
+* :pep621:`description` – The summary description of the project.
 * One of :pep621:`authors/maintainers`.
 
 The remaining `Sphinx configuration values`_ can be provided in the ``[tool.sphinx-pyproject]`` table.
