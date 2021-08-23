@@ -5,12 +5,12 @@ exclude: ^$
 
 repos:
  - repo: https://github.com/repo-helper/pyproject-parser
-   rev: v0.3.0
+   rev: v0.4.2
    hooks:
     - id: reformat-pyproject
 
  - repo: https://github.com/pre-commit/pre-commit-hooks
-   rev: v3.4.0
+   rev: v4.0.1
    hooks:
     - id: check-added-large-files
     - id: check-ast
@@ -51,7 +51,7 @@ repos:
     - id: flake2lint
 
  - repo: https://github.com/pre-commit/pygrep-hooks
-   rev: v1.8.0
+   rev: v1.9.0
    hooks:
     - id: python-no-eval
     - id: rst-backticks
@@ -59,7 +59,7 @@ repos:
     - id: rst-inline-touching-normal
 
  - repo: https://github.com/asottile/pyupgrade
-   rev: v2.12.0
+   rev: v2.24.0
    hooks:
     - id: pyupgrade
       args:
