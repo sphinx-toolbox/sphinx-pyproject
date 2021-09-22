@@ -162,7 +162,7 @@ Contents
 	GitHub <https://github.com/sphinx-toolbox/sphinx-pyproject>
 	PyPI <https://pypi.org/project/sphinx-pyproject>
 	Contributing Guide <https://contributing-to-sphinx-toolbox.readthedocs.io/en/latest/>
-
+	license
 
 .. start links
 
