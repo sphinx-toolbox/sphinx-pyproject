@@ -38,6 +38,7 @@ extensions:
 - sphinxcontrib.default_values
 - sphinxcontrib.toctree_plus
 - sphinx_debuginfo
+- sphinx_licenseinfo
 - seed_intersphinx_mapping
 - sphinx_toolbox_experimental.html_section
 - sphinx_toolbox_experimental.autosummary_widths
