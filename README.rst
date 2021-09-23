@@ -58,8 +58,8 @@ sphinx-pyproject
 	:target: https://github.com/sphinx-toolbox/sphinx-pyproject/actions?query=workflow%3A%22mypy%22
 	:alt: mypy status
 
-.. |requires| image:: https://requires.io/github/sphinx-toolbox/sphinx-pyproject/requirements.svg?branch=master
-	:target: https://requires.io/github/sphinx-toolbox/sphinx-pyproject/requirements/?branch=master
+.. |requires| image:: https://dependency-dash.herokuapp.com/github/sphinx-toolbox/sphinx-pyproject/badge.svg
+	:target: https://dependency-dash.herokuapp.com/github/sphinx-toolbox/sphinx-pyproject/
 	:alt: Requirements Status
 
 .. |coveralls| image:: https://img.shields.io/coveralls/github/sphinx-toolbox/sphinx-pyproject/master?logo=coveralls
@@ -157,7 +157,7 @@ By passing ``globalns=globals()`` to the class constructor, the keys parsed from
 
 For example:
 
-.. code-block:: python
+.. code-block:: python3
 
 	# conf.py
 

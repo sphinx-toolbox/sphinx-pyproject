@@ -10,7 +10,7 @@ By passing :func:`globalns=globals() <globals>` to the class constructor, the ke
 
 	For example:
 
-	.. code-block:: python
+	.. code-block:: python3
 
 		# conf.py
 
