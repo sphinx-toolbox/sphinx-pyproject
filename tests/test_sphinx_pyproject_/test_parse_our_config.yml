@@ -51,6 +51,7 @@ github_repository: sphinx-pyproject
 github_username: sphinx-toolbox
 gitstamp_fmt: '%d %b %Y'
 hide_none_rtype: true
+html_codeblock_linenos_style: table
 html_show_sourcelink: true
 html_static_path:
 - _static
