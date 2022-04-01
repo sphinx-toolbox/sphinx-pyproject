@@ -69,7 +69,7 @@ extensions = [
     "sphinx_debuginfo",
     "sphinx_licenseinfo",
     "seed_intersphinx_mapping",
-    "sphinx_toolbox_experimental.html_section",
+    "html_section",
     "sphinx_toolbox_experimental.autosummary_widths",
     "sphinx_toolbox_experimental.succinct_seealso",
     "sphinx_toolbox_experimental.needspace",
