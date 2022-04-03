@@ -114,7 +114,7 @@ sphinx-pyproject
 		:last-commit:
 		:alt: GitHub last commit
 
-	.. |maintained| maintained-shield:: 2021
+	.. |maintained| maintained-shield:: 2022
 		:alt: Maintenance
 
 	.. |pypi-downloads| pypi-shield::
