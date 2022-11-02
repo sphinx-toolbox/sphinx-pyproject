@@ -71,7 +71,7 @@ jobs:
         run: python -m tox -e "${{ matrix.config.testenvs }}" -s false
 
       - name: "Upload Coverage 🚀"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: ${{ always() && steps.setup-python.outcome == 'success' }}
         with:
           name: "coverage-${{ matrix.config.python-version }}"
