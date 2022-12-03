@@ -98,7 +98,7 @@ jobs:
           python -m pip install --upgrade "coveralls>=3.0.0" coverage_pyver_pragma
 
       - name: "Download Coverage 🪂"
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           path: coverage
 
