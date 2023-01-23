@@ -46,7 +46,7 @@ github_username = "sphinx-toolbox"
 github_repository = "sphinx-pyproject"
 author = "Dominic Davis-Foster"
 project = "sphinx-pyproject"
-copyright = "2021 Dominic Davis-Foster"
+copyright = "2021-2023 Dominic Davis-Foster"
 language = "en"
 package_root = "sphinx_pyproject"
 extensions = [
@@ -70,12 +70,12 @@ extensions = [
     "sphinx_licenseinfo",
     "seed_intersphinx_mapping",
     "html_section",
-    "sphinx_toolbox_experimental.autosummary_widths",
-    "sphinx_toolbox_experimental.succinct_seealso",
-    "sphinx_toolbox_experimental.needspace",
+    "sphinx_toolbox.more_autosummary.column_widths",
+    "sphinx_toolbox.latex",
+    "sphinx_toolbox.latex.succinct_seealso",
     "sphinx_toolbox_experimental.missing_xref",
     "sphinx_toolbox_experimental.changelog",
-    "sphinx_toolbox_experimental.peps",
+    "sphinx_packaging.peps",
 ]
 sphinxemoji_style = "twemoji"
 gitstamp_fmt = "%d %b %Y"

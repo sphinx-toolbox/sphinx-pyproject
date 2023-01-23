@@ -1,7 +1,7 @@
 # Configuration for 'repo_helper' (https://github.com/domdfcoding/repo_helper
 ---
 modname: 'sphinx-pyproject'
-copyright_years: 2021
+copyright_years: 2021-2023
 author: 'Dominic Davis-Foster'
 email: 'dominic@davis-foster.co.uk'
 username: 'sphinx-toolbox'
@@ -52,9 +52,12 @@ exclude_files:
 preserve_custom_theme: true
 
 extra_sphinx_extensions:
- - sphinx_toolbox_experimental.autosummary_widths
- - sphinx_toolbox_experimental.succinct_seealso
- - sphinx_toolbox_experimental.needspace
+ - sphinx_toolbox.more_autosummary.column_widths
+ - sphinx_toolbox.latex
+ - sphinx_toolbox.latex.succinct_seealso
  - sphinx_toolbox_experimental.missing_xref
  - sphinx_toolbox_experimental.changelog
- - sphinx_toolbox_experimental.peps
+ - sphinx_packaging.peps
+
+sphinx_conf_epilogue:
+  - "needspace_amount = r'5\\baselineskip'"

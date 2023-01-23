@@ -57,7 +57,6 @@ class SphinxConfig(Mapping[str, Any]):
 	:no-default globalns:
 
 	.. autosummary-widths:: 1/4
-		:html: 2/10
 	"""
 
 	name: str
@@ -190,7 +189,6 @@ class ProjectParser(AbstractConfigParser):
 	Parser for :pep:`621` metadata from ``pyproject.toml``.
 
 	.. autosummary-widths:: 7/16
-		:html: 3/10
 	"""
 
 	def parse_name(self, config: Dict[str, TOML_TYPES]) -> str:
