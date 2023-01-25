@@ -18,7 +18,7 @@ autodoc_exclude_members:
 - __getnewargs__
 - __abstractmethods__
 - __hash__
-copyright: 2021 Dominic Davis-Foster
+copyright: 2021-2023 Dominic Davis-Foster
 description: Move some of your Sphinx configuration into pyproject.toml
 extensions:
 - sphinx_toolbox
@@ -41,12 +41,12 @@ extensions:
 - sphinx_licenseinfo
 - seed_intersphinx_mapping
 - html_section
-- sphinx_toolbox_experimental.autosummary_widths
-- sphinx_toolbox_experimental.succinct_seealso
-- sphinx_toolbox_experimental.needspace
+- sphinx_toolbox.more_autosummary.column_widths
+- sphinx_toolbox.latex
+- sphinx_toolbox.latex.succinct_seealso
 - sphinx_toolbox_experimental.missing_xref
 - sphinx_toolbox_experimental.changelog
-- sphinx_toolbox_experimental.peps
+- sphinx_packaging.peps
 github_repository: sphinx-pyproject
 github_username: sphinx-toolbox
 gitstamp_fmt: '%d %b %Y'
