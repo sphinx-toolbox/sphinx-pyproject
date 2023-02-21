@@ -208,3 +208,15 @@ def test_invalid_style(tmp_pathplus: PathPlus):
 	err = "'style' argument must be one of: pep621, poetry"
 	with pytest.raises(ValueError, match=err):
 		SphinxConfig(tmp_pathplus / "pyproject.toml", style="other")
+
+
+def test_config_overrides(tmp_pathplus: PathPlus):
+	(tmp_pathplus / "pyproject.toml").write_text(MINIMUM)
+	config_overrides: Dict[str, Any] = {"version": "3.2.1"}
+
+	config = SphinxConfig(tmp_pathplus / "pyproject.toml", config_overrides=config_overrides)
+
+	assert config.name == "foo"
+	assert config.author == "Dominic Davis-Foster"
+	assert config.version == "3.2.1"
+	assert config.description == "Description"
