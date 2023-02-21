@@ -34,6 +34,28 @@ def test_parse_our_config(advanced_data_regression: AdvancedDataRegressionFixtur
 	advanced_data_regression.check(globalns)
 
 
+def test_parse_our_config_overrides(advanced_data_regression: AdvancedDataRegressionFixture):
+	globalns: Dict[str, Any] = {}
+        config_overrides: Dict[str, Any] = {"version": "3.2.1"}
+
+	config = SphinxConfig(root_dir / "pyproject.toml", globalns=globalns, config_overrides=config_overrides)
+
+	assert config.name == "sphinx-pyproject"
+	assert config.author == "Dominic Davis-Foster"
+	assert config.version == "3.2.1"
+	assert config.description == "Move some of your Sphinx configuration into pyproject.toml"
+
+	assert config["language"] == "en"
+	assert config["package_root"] == "sphinx_pyproject"
+	assert config["github_repository"] == "sphinx-pyproject"
+	assert config["sphinxemoji_style"] == "twemoji"
+	assert config["templates_path"] == ["_templates"]
+	assert config["add_module_names"] is False
+	assert "html_theme_options" not in config
+
+	advanced_data_regression.check(globalns)
+
+
 MINIMUM = """\
 [project]
 name = 'foo'

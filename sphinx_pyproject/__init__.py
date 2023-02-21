@@ -55,6 +55,11 @@ class SphinxConfig(Mapping[str, Any]):
 		The variables parsed from the ``[tool.sphinx-pyproject]`` table will be added to this namespace.
 		By default, or if explicitly :py:obj:`None`, this does not happen.
 	:no-default globalns:
+	:param config_overrides: Custom configuration overrides.
+		This parameter can be used to dynamically update values from ``pyproject.toml``.
+		This can be used to patch dynamic values like ``version``.
+		By default, or if explicitly :py:obj:`None`, no config updates are performed.
+	:no-default config_overrides:
 
 	.. autosummary-widths:: 1/4
 	"""
@@ -122,6 +127,7 @@ class SphinxConfig(Mapping[str, Any]):
 			pyproject_file: PathLike = "../pyproject.toml",
 			*,
 			globalns: Optional[MutableMapping] = None,
+			config_overrides: Optional[MutableMapping] = None
 			):
 
 		pyproject_file = PathPlus(pyproject_file).abspath()
@@ -131,6 +137,9 @@ class SphinxConfig(Mapping[str, Any]):
 			raise BadConfigError(f"No 'project' table found in {pyproject_file.as_posix()}")
 
 		pep621_config = ProjectParser().parse(config["project"])
+
+		for key, value in (config_overrides or {}).items():
+			pep621_config[key] = value
 
 		for key in ("name", "version", "description"):
 			if key not in pep621_config:
