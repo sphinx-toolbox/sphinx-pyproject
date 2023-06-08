@@ -27,6 +27,7 @@ Move some of your Sphinx configuration into ``pyproject.toml``.
 #
 
 # stdlib
+import re
 from typing import Any, Dict, Iterator, List, Mapping, MutableMapping, Optional
 
 # 3rd party
@@ -122,15 +123,19 @@ class SphinxConfig(Mapping[str, Any]):
 			pyproject_file: PathLike = "../pyproject.toml",
 			*,
 			globalns: Optional[MutableMapping] = None,
+			style: str = "pep621",
 			):
 
 		pyproject_file = PathPlus(pyproject_file).abspath()
 		config = dom_toml.load(pyproject_file, decoder=TomlPureDecoder)
 
-		if "project" not in config:
-			raise BadConfigError(f"No 'project' table found in {pyproject_file.as_posix()}")
+		parser_cls = project_parser_styles.get(style)
+		if parser_cls is None:
+			styles = ", ".join(project_parser_styles)
+			raise ValueError(f"'style' argument must be one of: {styles}")
 
-		pep621_config = ProjectParser().parse(config["project"])
+		namespace = parser_cls.get_namespace(pyproject_file, config)
+		pep621_config = parser_cls().parse(namespace)
 
 		for key in ("name", "version", "description"):
 			if key not in pep621_config:
@@ -190,6 +195,13 @@ class ProjectParser(AbstractConfigParser):
 
 	.. autosummary-widths:: 7/16
 	"""
+
+	@staticmethod
+	def get_namespace(filename: PathPlus, config: Dict[str, TOML_TYPES]) -> Dict[str, TOML_TYPES]:
+		if "project" not in config:
+			raise BadConfigError(f"No 'project' table found in {filename.as_posix()}")
+
+		return config["project"]
 
 	def parse_name(self, config: Dict[str, TOML_TYPES]) -> str:
 		"""
@@ -273,10 +285,45 @@ class ProjectParser(AbstractConfigParser):
 		:param config:
 		:param set_defaults: Has no effect in this class.
 		"""
-
 		if "authors" in config:
 			config["author"] = config.pop("authors")
 		elif "maintainers" in config:
 			config["author"] = config.pop("maintainers")
 
 		return super().parse(config)
+
+
+class PoetryProjectParser(ProjectParser):
+
+	@staticmethod
+	def get_namespace(filename: PathPlus, config: Dict[str, TOML_TYPES]) -> Dict[str, TOML_TYPES]:
+		result = config.get("tool", {}).get("poetry")
+		if result is None:
+			raise BadConfigError(f"No 'tool.poetry' table found in {filename.as_posix()}")
+
+		return result
+
+	@staticmethod
+	def parse_author(config: Dict[str, TOML_TYPES]) -> str:
+		"""
+		Parse poetry's authors key.
+
+		:param config: The unparsed TOML config for the ``[tool.poetry]`` table.
+		"""
+
+		pep621_style_authors: List[dict[str, str]] = []
+
+		for author in config["author"]:
+			match = re.match(r"(?P<name>.*)<(?P<email>.*)>", author)
+			if match:
+				name = match.group("name").strip()
+				email = match.group("email").strip()
+				pep621_style_authors.append({"name": name, "email": email})
+
+		return ProjectParser.parse_author({"author": pep621_style_authors})
+
+
+project_parser_styles = {
+		"pep621": ProjectParser,
+		"poetry": PoetryProjectParser,
+		}

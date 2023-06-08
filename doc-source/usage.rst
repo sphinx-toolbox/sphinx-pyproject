@@ -35,6 +35,16 @@ By passing :func:`globalns=globals() <globals>` to the class constructor, the ke
 	This will prevent warnings from linters etc., but is not necessary for Sphinx to see the configuration.
 
 
+.. note::
+
+   At time of writing the "Poetry" tool does not support PEP 621. To enable a mode compatible with
+   the ``[tool.poetry]`` heading supply the argument ``style="poetry"``. For example:
+
+   .. codeb-block:: python
+
+      config = SphinxConfig("../pyproject.toml", style="poetry")
+
+
 Configuration
 ----------------
 
