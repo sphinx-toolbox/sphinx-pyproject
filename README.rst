@@ -178,8 +178,8 @@ the recommended approach is to explicitly assign the name:
 
 This will prevent warnings from linters etc., but is not necessary for Sphinx to see the configuration.
 
-Additionally the ``SphinxConfig``class takes an optional parameter ``config_overrides`` that
-can be used to dynamically update values from `` pyproject.toml``. This can be helpful for setting
+Additionally the ``SphinxConfig`` class takes an optional parameter ``config_overrides`` that
+can be used to dynamically update values from ``pyproject.toml``. This can be helpful for setting
 dynamic values like ``version``.
 
 .. code-block:: python3
