@@ -175,7 +175,7 @@ class SphinxConfig(Mapping[str, Any]):
 			globalns.update(pep621_config)
 			globalns.update(self._freeform)
 
-	def __getitem__(self, item) -> Any:
+	def __getitem__(self, item: str) -> Any:
 		"""
 		Returns the value of the given key in the  ``tool.sphinx-pyproject`` table.
 
