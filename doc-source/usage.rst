@@ -40,7 +40,7 @@ By passing :func:`globalns=globals() <globals>` to the class constructor, the ke
    At time of writing the "Poetry" tool does not support PEP 621. To enable a mode compatible with
    the ``[tool.poetry]`` heading supply the argument ``style="poetry"``. For example:
 
-   .. codeb-block:: python
+   .. code-block:: python
 
       config = SphinxConfig("../pyproject.toml", style="poetry")
 
