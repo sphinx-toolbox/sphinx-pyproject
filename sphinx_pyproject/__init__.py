@@ -58,7 +58,11 @@ class SphinxConfig(Mapping[str, Any]):
 	:no-default globalns:
 	:param style: Either ``pep621`` (default), or ``poetry`` to read configuration from the ``[tool.poetry]`` table.
 	:no-default style:
-
+	:param config_overrides: Custom configuration overrides.
+		This parameter can be used to dynamically update values from ``pyproject.toml``.
+		This can be used to patch dynamic values like ``version``.
+		By default, or if explicitly :py:obj:`None`, no config updates are performed.
+	:no-default config_overrides:
 
 	.. autosummary-widths:: 1/4
 	"""
@@ -127,6 +131,7 @@ class SphinxConfig(Mapping[str, Any]):
 			*,
 			globalns: Optional[MutableMapping] = None,
 			style: str = "pep621",
+			config_overrides: Optional[MutableMapping] = None,
 			):
 
 		pyproject_file = PathPlus(pyproject_file).abspath()
@@ -139,6 +144,9 @@ class SphinxConfig(Mapping[str, Any]):
 
 		namespace = parser_cls.get_namespace(pyproject_file, config)
 		pep621_config = parser_cls().parse(namespace)
+
+		for key, value in (config_overrides or {}).items():
+			pep621_config[key] = value
 
 		for key in ("name", "version", "description"):
 			if key not in pep621_config:
