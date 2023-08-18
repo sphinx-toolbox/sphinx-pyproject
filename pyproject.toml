@@ -4,7 +4,7 @@ build-backend = "whey"
 
 [project]
 name = "sphinx-pyproject"
-version = "0.1.0"
+version = "0.2.0"
 description = "Move some of your Sphinx configuration into pyproject.toml"
 readme = "README.rst"
 keywords = [ "documentation", "pep621", "sphinx", "toml",]
