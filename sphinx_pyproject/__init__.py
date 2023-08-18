@@ -44,7 +44,7 @@ __license__: str = "MIT License"
 __version__: str = "0.1.0"
 __email__: str = "dominic@davis-foster.co.uk"
 
-__all__ = ["SphinxConfig", "ProjectParser"]
+__all__ = ["SphinxConfig", "ProjectParser", "PoetryProjectParser"]
 
 
 class SphinxConfig(Mapping[str, Any]):
@@ -198,6 +198,15 @@ class ProjectParser(AbstractConfigParser):
 
 	@staticmethod
 	def get_namespace(filename: PathPlus, config: Dict[str, TOML_TYPES]) -> Dict[str, TOML_TYPES]:
+		"""
+		Returns the ``[project]`` table in a ``project.toml`` file.
+
+		:param filename: The filename the TOML data was read from. Used in error messages.
+		:param config: The data from the TOML file.
+
+		.. versionadded:: 0.2.0
+		"""
+
 		if "project" not in config:
 			raise BadConfigError(f"No 'project' table found in {filename.as_posix()}")
 
@@ -294,9 +303,21 @@ class ProjectParser(AbstractConfigParser):
 
 
 class PoetryProjectParser(ProjectParser):
+	"""
+	Parser for poetry metadata from ``pyproject.toml``.
+
+	.. versionadded:: 0.2.0
+	"""
 
 	@staticmethod
 	def get_namespace(filename: PathPlus, config: Dict[str, TOML_TYPES]) -> Dict[str, TOML_TYPES]:
+		"""
+		Returns the ``[tool.poetry]`` table in a ``project.toml`` file.
+
+		:param filename: The filename the TOML data was read from. Used in error messages.
+		:param config: The data from the TOML file.
+		"""
+
 		result = config.get("tool", {}).get("poetry")
 		if result is None:
 			raise BadConfigError(f"No 'tool.poetry' table found in {filename.as_posix()}")
