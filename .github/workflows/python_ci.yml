@@ -34,7 +34,7 @@ jobs:
           - {python-version: "3.9", testenvs: "py39,build", experimental: False}
           - {python-version: "3.10", testenvs: "py310,build", experimental: False}
           - {python-version: "3.11", testenvs: "py311-dev,build", experimental: True}
-          - {python-version: "pypy-3.6", testenvs: "pypy36,build", experimental: False}
+          - {python-version: "pypy-3.6", testenvs: "pypy36", experimental: False}
           - {python-version: "pypy-3.7", testenvs: "pypy37,build", experimental: True}
 
     steps:
