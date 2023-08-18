@@ -56,6 +56,9 @@ class SphinxConfig(Mapping[str, Any]):
 		The variables parsed from the ``[tool.sphinx-pyproject]`` table will be added to this namespace.
 		By default, or if explicitly :py:obj:`None`, this does not happen.
 	:no-default globalns:
+	:param style: Either ``pep621`` (default), or ``poetry`` to read configuration from the ``[tool.poetry]`` table.
+	:no-default style:
+
 
 	.. autosummary-widths:: 1/4
 	"""
@@ -332,7 +335,7 @@ class PoetryProjectParser(ProjectParser):
 		:param config: The unparsed TOML config for the ``[tool.poetry]`` table.
 		"""
 
-		pep621_style_authors: List[dict[str, str]] = []
+		pep621_style_authors: List[Dict[str, str]] = []
 
 		for author in config["author"]:
 			match = re.match(r"(?P<name>.*)<(?P<email>.*)>", author)
