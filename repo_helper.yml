@@ -7,7 +7,7 @@ email: 'dominic@davis-foster.co.uk'
 username: 'sphinx-toolbox'
 assignee: 'domdfcoding'
 primary_conda_channel: 'domdfcoding'
-version: '0.2.0'
+version: '0.3.0'
 license: 'MIT'
 short_desc: 'Move some of your Sphinx configuration into pyproject.toml'
 

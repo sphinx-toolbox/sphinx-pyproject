@@ -84,4 +84,4 @@ toctree_plus_types:
 - protocol
 - role
 - typeddict
-version: 0.2.0
+version: 0.3.0
