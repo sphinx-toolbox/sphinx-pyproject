@@ -156,17 +156,30 @@ def test_missing_keys(tmp_pathplus: PathPlus, config: str):
 		SphinxConfig(tmp_pathplus / "pyproject.toml")
 
 
-def test_poetry(tmp_pathplus: PathPlus):
-	toml = textwrap.dedent(
-			"""
-		[tool.poetry]
-		name = 'foo'
-		version = '1.2.3'
-		description = 'desc'
-		authors = ["Person <example@email.com>"]
-		"""
-			)
+POETRY_AUTHORS = """
+[tool.poetry]
+name = 'foo'
+version = '1.2.3'
+description = 'desc'
+authors = ["Person <example@email.com>"]
+"""
 
+POETRY_MAINTAINERS = """
+[tool.poetry]
+name = 'foo'
+version = '1.2.3'
+description = 'desc'
+maintainers = ["Person <example@email.com>"]
+"""
+
+
+@pytest.mark.parametrize(
+		"toml", [
+				pytest.param(POETRY_AUTHORS, id="authors"),
+				pytest.param(POETRY_MAINTAINERS, id="maintainers"),
+				]
+		)
+def test_poetry(tmp_pathplus: PathPlus, toml: str):
 	(tmp_pathplus / "pyproject.toml").write_text(toml)
 
 	config = SphinxConfig(tmp_pathplus / "pyproject.toml", style="poetry")
