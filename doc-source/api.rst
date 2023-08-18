@@ -4,7 +4,7 @@ API Reference
 
 .. latex:vspace:: -20px
 
-.. autosummary-widths:: 7/16
+.. autosummary-widths:: 45/100
 
 .. automodule:: sphinx_pyproject
 	:member-order: bysource

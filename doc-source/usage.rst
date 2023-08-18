@@ -38,11 +38,25 @@ By passing :func:`globalns=globals() <globals>` to the class constructor, the ke
 .. note::
 
    At time of writing the "Poetry" tool does not support PEP 621. To enable a mode compatible with
-   the ``[tool.poetry]`` heading supply the argument ``style="poetry"``. For example:
+   the ``[tool.poetry]`` table supply the argument ``style="poetry"``. For example:
 
    .. code-block:: python
 
       config = SphinxConfig("../pyproject.toml", style="poetry")
+
+
+Additionally the ``SphinxConfig`` class takes an optional parameter ``config_overrides`` that
+can be used to dynamically update values from ``pyproject.toml``. This can be helpful for setting
+dynamic values like ``version``.
+
+.. code-block:: python3
+
+	# conf.py
+	from sphinx_pyproject import SphinxConfig
+
+	from myproject import __version__ as myproject_version
+
+	config = SphinxConfig("../pyproject.toml", globalns=globals(), config_overrides = {"version": myproject_version})
 
 
 Configuration

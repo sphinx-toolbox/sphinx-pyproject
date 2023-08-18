@@ -64,6 +64,9 @@ class SphinxConfig(Mapping[str, Any]):
 		By default, or if explicitly :py:obj:`None`, no config updates are performed.
 	:no-default config_overrides:
 
+	.. versionchanged:: 0.2.0  Added the ``style`` keyword argument.
+	.. versionchanged:: 0.3.0  Added the ``config_overrides`` keyword argument.
+
 	.. autosummary-widths:: 1/4
 	"""
 
@@ -191,10 +194,6 @@ class SphinxConfig(Mapping[str, Any]):
 	def __iter__(self) -> Iterator[str]:
 		"""
 		Returns an iterator over the keys in the ``tool.sphinx-pyproject`` table.
-
-		:rtype:
-
-		.. latex:clearpage::
 		"""
 
 		yield from self._freeform
@@ -305,6 +304,7 @@ class ProjectParser(AbstractConfigParser):
 		:param config:
 		:param set_defaults: Has no effect in this class.
 		"""
+
 		if "authors" in config:
 			config["author"] = config.pop("authors")
 		elif "maintainers" in config:
