@@ -28,12 +28,13 @@ Move some of your Sphinx configuration into ``pyproject.toml``.
 
 # stdlib
 import re
+import collections.abc
 from typing import Any, Dict, Iterator, List, Mapping, MutableMapping, Optional
 
 # 3rd party
 import dom_toml
 from dom_toml.decoder import TomlPureDecoder
-from dom_toml.parser import TOML_TYPES, AbstractConfigParser, BadConfigError
+from dom_toml.parser import TOML_TYPES, AbstractConfigParser, BadConfigError, construct_path
 from domdf_python_tools.paths import PathPlus
 from domdf_python_tools.typing import PathLike
 from domdf_python_tools.words import word_join
@@ -151,18 +152,26 @@ class SphinxConfig(Mapping[str, Any]):
 		for key, value in (config_overrides or {}).items():
 			pep621_config[key] = value
 
-		for key in ("name", "version", "description"):
-			if key not in pep621_config:
+		dynamic = pep621_config.get("dynamic", [])
+		if "name" not in pep621_config:
+			raise BadConfigError(
+					f"Either 'name' was not declared in the 'project' table "
+					f"or it was marked as 'dynamic', which is unsupported by 'sphinx-pyproject'."
+					)
+
+		for key in ("version", "description"):
+			if key not in pep621_config and key not in dynamic:
 				raise BadConfigError(
-						f"Either {key!r} was not declared in the 'project' table "
-						f"or it was marked as 'dynamic', which is unsupported by 'sphinx-pyproject'."
+						f"{key!r} was not declared in the 'project' table "
+						f"and was not marked as 'dynamic', which is unsupported by 'sphinx-pyproject'."
 						)
 
 		if "author" not in pep621_config:
-			raise BadConfigError(
-					f"Either 'authors/maintainers' was not declared in the 'project' table "
-					f"or it was marked as 'dynamic', which is unsupported by 'sphinx-pyproject'."
-					)
+			if "author" not in dynamic and "maintainer" not in dynamic:
+				raise BadConfigError(
+						f"'authors/maintainers' was not declared in the 'project' table "
+						f"and was not marked as 'dynamic', which is unsupported by 'sphinx-pyproject'."
+						)
 
 		self.name = pep621_config["name"]
 		self.version = pep621_config["version"]
@@ -255,6 +264,25 @@ class ProjectParser(AbstractConfigParser):
 		self.assert_type(description, str, ["project", "description"])
 		return description
 
+	def parse_dynamic(self, config: Dict[str, TOML_TYPES]) -> List[str]:
+		"""
+		Parse the :pep621:`dynamic` key.
+
+		:param config: The unparsed TOML config for the ``[project]`` table.
+		"""
+
+		dynamic = config["dynamic"]
+
+		if isinstance(dynamic, str):
+			name = construct_path(["project", "dynamic"])
+			raise TypeError(
+					f"Invalid type for {name!r}: "
+					f"expected <class 'collections.abc.Sequence'>, got {type(dynamic)!r}",
+					)
+
+		self.assert_type(dynamic, collections.abc.Sequence, ["project", "dynamic"])
+		return dynamic
+
 	@staticmethod
 	def parse_author(config: Dict[str, TOML_TYPES]) -> str:
 		"""
@@ -290,6 +318,7 @@ class ProjectParser(AbstractConfigParser):
 				"name",
 				"version",
 				"description",
+				"dynamic",
 				"author",
 				]
 

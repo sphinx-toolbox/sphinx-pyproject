@@ -133,10 +133,6 @@ def test_authors_commas(tmp_pathplus: PathPlus):
 @pytest.mark.parametrize(
 		"config",
 		[
-				pytest.param("[project]", id="empty_project"),
-				pytest.param("[project]\n", id="name_only"),
-				pytest.param("[project]\nversion = '1.2.3'", id="version_only"),
-				pytest.param("[project]\ndescription = 'Description'", id="description_only"),
 				pytest.param("[project]\nname = 'foo'\ndescription = 'Description'", id="name_description"),
 				pytest.param("[project]\nname = 'foo'\nversion = '1.2.3'", id="name_description"),
 				pytest.param(
@@ -145,6 +141,27 @@ def test_authors_commas(tmp_pathplus: PathPlus):
 				]
 		)
 def test_missing_keys(tmp_pathplus: PathPlus, config: str):
+	(tmp_pathplus / "pyproject.toml").write_text(config)
+
+	err = (
+			"'.*' was not declared in the 'project' table "
+			"and was not marked as 'dynamic', which is unsupported by 'sphinx-pyproject'."
+			)
+
+	with pytest.raises(BadConfigError, match=err):
+		SphinxConfig(tmp_pathplus / "pyproject.toml")
+
+
+@pytest.mark.parametrize(
+		"config",
+		[
+				pytest.param("[project]", id="empty_project"),
+				pytest.param("[project]\n", id="name_only"),
+				pytest.param("[project]\nversion = '1.2.3'", id="version_only"),
+				pytest.param("[project]\ndescription = 'Description'", id="description_only"),
+				]
+		)
+def test_missing_name(tmp_pathplus: PathPlus, config: str):
 	(tmp_pathplus / "pyproject.toml").write_text(config)
 
 	err = (

@@ -20,6 +20,10 @@ autodoc_exclude_members:
 - __hash__
 copyright: 2021-2023 Dominic Davis-Foster
 description: Move some of your Sphinx configuration into pyproject.toml
+dynamic:
+- requires-python
+- classifiers
+- dependencies
 extensions:
 - sphinx_toolbox
 - sphinx_toolbox.more_autodoc
