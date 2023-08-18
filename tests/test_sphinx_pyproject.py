@@ -1,4 +1,5 @@
 # stdlib
+import textwrap
 from typing import Any, Dict
 
 # 3rd party
@@ -153,3 +154,57 @@ def test_missing_keys(tmp_pathplus: PathPlus, config: str):
 
 	with pytest.raises(BadConfigError, match=err):
 		SphinxConfig(tmp_pathplus / "pyproject.toml")
+
+
+POETRY_AUTHORS = """
+[tool.poetry]
+name = 'foo'
+version = '1.2.3'
+description = 'desc'
+authors = ["Person <example@email.com>"]
+"""
+
+POETRY_MAINTAINERS = """
+[tool.poetry]
+name = 'foo'
+version = '1.2.3'
+description = 'desc'
+maintainers = ["Person <example@email.com>"]
+"""
+
+
+@pytest.mark.parametrize(
+		"toml", [
+				pytest.param(POETRY_AUTHORS, id="authors"),
+				pytest.param(POETRY_MAINTAINERS, id="maintainers"),
+				]
+		)
+def test_poetry(tmp_pathplus: PathPlus, toml: str):
+	(tmp_pathplus / "pyproject.toml").write_text(toml)
+
+	config = SphinxConfig(tmp_pathplus / "pyproject.toml", style="poetry")
+	assert config.name == "foo"
+	assert config.version == "1.2.3"
+	assert config.author == "Person"
+	assert config.description == "desc"
+
+
+def test_poetry_missing_heading(tmp_pathplus: PathPlus):
+	toml = textwrap.dedent("""
+		[other.table]
+		name = 'foo'
+		""")
+
+	(tmp_pathplus / "pyproject.toml").write_text(toml)
+
+	err = "No 'tool.poetry' table found in"
+	with pytest.raises(BadConfigError, match=err):
+		SphinxConfig(tmp_pathplus / "pyproject.toml", style="poetry")
+
+
+def test_invalid_style(tmp_pathplus: PathPlus):
+	(tmp_pathplus / "pyproject.toml").write_text('')
+
+	err = "'style' argument must be one of: pep621, poetry"
+	with pytest.raises(ValueError, match=err):
+		SphinxConfig(tmp_pathplus / "pyproject.toml", style="other")
