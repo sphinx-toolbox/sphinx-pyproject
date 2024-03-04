@@ -48,4 +48,4 @@ known_third_party = [
     "shippinglabel",
     "toml",
 ]
-known_first_party = "sphinx_pyproject"
+known_first_party = [ "sphinx_pyproject",]
