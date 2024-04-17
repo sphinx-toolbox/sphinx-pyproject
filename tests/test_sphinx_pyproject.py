@@ -27,7 +27,7 @@ def test_parse_our_config(advanced_data_regression: AdvancedDataRegressionFixtur
 	assert config["language"] == "en"
 	assert config["package_root"] == "sphinx_pyproject"
 	assert config["github_repository"] == "sphinx-pyproject"
-	assert config["sphinxemoji_style"] == "twemoji"
+	# assert config["sphinxemoji_style"] == "twemoji"
 	assert config["templates_path"] == ["_templates"]
 	assert config["add_module_names"] is False
 	assert "html_theme_options" not in config

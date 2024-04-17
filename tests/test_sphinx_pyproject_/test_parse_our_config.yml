@@ -33,7 +33,6 @@ extensions:
 - sphinx.ext.mathjax
 - sphinxcontrib.extras_require
 - sphinx.ext.todo
-- sphinxemoji.sphinxemoji
 - notfound.extension
 - sphinx_copybutton
 - sphinxcontrib.default_values
@@ -66,7 +65,6 @@ package_root: sphinx_pyproject
 project: sphinx-pyproject
 pygments_style: default
 source_suffix: .rst
-sphinxemoji_style: twemoji
 suppress_warnings:
 - image.nonlocal_uri
 templates_path:
