@@ -14,6 +14,8 @@ short_desc: 'Move some of your Sphinx configuration into pyproject.toml'
 use_whey: true
 min_coverage: 100
 docs_fail_on_warning: true
+mypy_version: 1.16
+python_deploy_version: 3.9
 
 conda_channels:
   - conda-forge
