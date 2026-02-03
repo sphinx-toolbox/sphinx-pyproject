@@ -155,13 +155,13 @@ class SphinxConfig(Mapping[str, Any]):
 			if key not in pep621_config:
 				raise BadConfigError(
 						f"Either {key!r} was not declared in the 'project' table "
-						f"or it was marked as 'dynamic', which is unsupported by 'sphinx-pyproject'."
+						"or it was marked as 'dynamic', which is unsupported by 'sphinx-pyproject'.",
 						)
 
 		if "author" not in pep621_config:
 			raise BadConfigError(
-					f"Either 'authors/maintainers' was not declared in the 'project' table "
-					f"or it was marked as 'dynamic', which is unsupported by 'sphinx-pyproject'."
+					"Either 'authors/maintainers' was not declared in the 'project' table "
+					"or it was marked as 'dynamic', which is unsupported by 'sphinx-pyproject'.",
 					)
 
 		self.name = pep621_config["name"]
@@ -276,7 +276,7 @@ class ProjectParser(AbstractConfigParser):
 		all_authors = list(filter(bool, all_authors))
 
 		if not all_authors:
-			raise BadConfigError(f"The 'project.authors' key cannot be empty.")
+			raise BadConfigError("The 'project.authors' key cannot be empty.")
 
 		return word_join(all_authors)  # type: ignore
 

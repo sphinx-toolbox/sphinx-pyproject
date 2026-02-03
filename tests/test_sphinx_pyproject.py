@@ -73,24 +73,26 @@ github_repository = 'repo'
 				pytest.param(
 						f"{MINIMUM}\n[tool.sphinx-pyproject]\ngithub_username = 'username'",
 						1,
-						id="github_username"
+						id="github_username",
 						),
 				pytest.param(
 						f"{MINIMUM}\n[tool.sphinx-pyproject]\ngithub_repository = 'repo'",
 						1,
-						id="github_repository"
+						id="github_repository",
 						),
 				pytest.param(f"{MINIMUM}\n[tool.sphinx-pyproject]\nlanguage = 'en'", 1, id="language"),
 				pytest.param(
-						f"{MINIMUM}\n[tool.sphinx-pyproject]\nextensions = ['sphinx-toolbox']", 1, id="extensions"
+						f"{MINIMUM}\n[tool.sphinx-pyproject]\nextensions = ['sphinx-toolbox']",
+						1,
+						id="extensions",
 						),
 				pytest.param(
 						f"{MINIMUM}\n[tool.sphinx-pyproject]\nhtml_show_sourcelink = true",
 						1,
-						id="html_show_sourcelink"
+						id="html_show_sourcelink",
 						),
 				pytest.param(MULTIPLE_KEYS, 4, id="multiple_keys"),
-				]
+				],
 		)
 def test_parse_config(
 		tmp_pathplus: PathPlus,
@@ -140,9 +142,10 @@ def test_authors_commas(tmp_pathplus: PathPlus):
 				pytest.param("[project]\nname = 'foo'\ndescription = 'Description'", id="name_description"),
 				pytest.param("[project]\nname = 'foo'\nversion = '1.2.3'", id="name_description"),
 				pytest.param(
-						"[project]\nname = 'foo'\nversion = '1.2.3'\ndescription = 'Description'", id="no_authors"
+						"[project]\nname = 'foo'\nversion = '1.2.3'\ndescription = 'Description'",
+						id="no_authors",
 						),
-				]
+				],
 		)
 def test_missing_keys(tmp_pathplus: PathPlus, config: str):
 	(tmp_pathplus / "pyproject.toml").write_text(config)
@@ -174,10 +177,11 @@ maintainers = ["Person <example@email.com>"]
 
 
 @pytest.mark.parametrize(
-		"toml", [
+		"toml",
+		[
 				pytest.param(POETRY_AUTHORS, id="authors"),
 				pytest.param(POETRY_MAINTAINERS, id="maintainers"),
-				]
+				],
 		)
 def test_poetry(tmp_pathplus: PathPlus, toml: str):
 	(tmp_pathplus / "pyproject.toml").write_text(toml)
