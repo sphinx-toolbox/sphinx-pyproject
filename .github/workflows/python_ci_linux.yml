@@ -21,22 +21,20 @@ jobs:
     runs-on: "ubuntu-22.04"
     continue-on-error: ${{ matrix.config.experimental }}
     env:
-      USING_COVERAGE: '3.7,3.8,3.9,3.10,3.11,3.12,3.13,pypy-3.7,pypy-3.8,pypy-3.9'
+      USING_COVERAGE: '3.10,3.11,3.12,3.13,3.14,3.15,pypy-3.10,pypy-3.11'
 
     strategy:
       fail-fast: False
       matrix:
         config:
-          - {python-version: "3.7", testenvs: "py37,build", experimental: False}
-          - {python-version: "3.8", testenvs: "py38,build", experimental: False}
-          - {python-version: "3.9", testenvs: "py39,build", experimental: False}
           - {python-version: "3.10", testenvs: "py310,build", experimental: False}
           - {python-version: "3.11", testenvs: "py311,build", experimental: False}
           - {python-version: "3.12", testenvs: "py312,build", experimental: False}
           - {python-version: "3.13", testenvs: "py313,build", experimental: False}
-          - {python-version: "pypy-3.7", testenvs: "pypy37,build", experimental: False}
-          - {python-version: "pypy-3.8", testenvs: "pypy38,build", experimental: False}
-          - {python-version: "pypy-3.9", testenvs: "pypy39", experimental: True}
+          - {python-version: "3.14", testenvs: "py314,build", experimental: False}
+          - {python-version: "3.15", testenvs: "py315,build", experimental: True}
+          - {python-version: "pypy-3.10", testenvs: "pypy310,build", experimental: False}
+          - {python-version: "pypy-3.11", testenvs: "pypy311,build", experimental: False}
 
     steps:
       - name: Checkout 🛎️
@@ -55,9 +53,10 @@ jobs:
       - name: Setup Python 🐍
         id: setup-python
         if: ${{ steps.changes.outputs.code == 'true' || steps.changes.outcome == 'skipped' }}
-        uses: "actions/setup-python@v5"
+        uses: "actions/setup-python@v7"
         with:
           python-version: "${{ matrix.config.python-version }}"
+          allow-prereleases: true
 
       - name: Install dependencies 🔧
         if: steps.setup-python.outcome == 'success'
