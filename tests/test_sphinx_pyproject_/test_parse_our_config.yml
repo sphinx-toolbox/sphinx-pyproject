@@ -65,6 +65,7 @@ package_root: sphinx_pyproject
 project: sphinx-pyproject
 pygments_style: default
 source_suffix: .rst
+sphinxemoji_source: https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js
 suppress_warnings:
 - image.nonlocal_uri
 templates_path:
