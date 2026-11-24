@@ -134,7 +134,7 @@ class SphinxConfig(Mapping[str, Any]):
 			*,
 			globalns: Optional[MutableMapping] = None,
 			style: str = "pep621",
-			config_overrides: Optional[MutableMapping] = None,
+			config_overrides: Optional[Mapping[str, object]] = None,
 			):
 
 		pyproject_file = PathPlus(pyproject_file).abspath()
