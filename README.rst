@@ -196,8 +196,8 @@ Configuration
 ^^^^^^^^^^^^^^^
 
 ``sphinx-pyproject`` parses the configuration from the ``[project]`` and ``[tool.sphinx-pyproject]`` tables in ``pyproject.toml``.
-The ``[project]`` table is defined in `PEP 621`_.
-``sphinx-pyproject`` only uses the following keys:
+
+The ``[project]`` table is defined in `PEP 621`_ and only uses the following keys:
 
 * name_ – The name of the project.
 * version_ – The version of the project.
